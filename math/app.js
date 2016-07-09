@@ -1,0 +1,10 @@
+var mathlib = require('./mathlib');
+console.log(mathlib.add(5,6));
+console.log(mathlib.multiply(5,6));
+console.log(mathlib.square(6));
+console.log(mathlib.random(3,50));
+console.log(mathlib.random(3,50));
+console.log(mathlib.random(3,50));
+console.log(mathlib.random(3,50));
+console.log(mathlib.random(3,50));
+console.log(mathlib.random(3,50));

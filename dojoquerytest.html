@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var color = "blue"
+			$("#button").css("background-color", color);
+			_dojo("button").hover(function(){
+				$("#button").css("background-color", "green");
+			}, function(){
+				$("#button").css("background-color", color);
+			})
+			_dojo("button").click(function() {
+				if (color == "blue") {
+					$("#button").css("background-color", "red");
+					color = "red";
+					console.log(color);
+				}
+				else if (color == "red") {
+					$("#button").css("background-color", "blue");
+					color = "blue";
+					console.log(color);
+				}
+			});
+		})
+	</script>
+</head>
+<body>
+	<div class="buttonlist">
+		<button id="button">Click Me!</button>
+	</div>
+
+
+	<script src="dojoquery.js"></script>	
+</body>
+</html>

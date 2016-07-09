@@ -1,0 +1,10 @@
+body{ 
+	background-color: black;
+	color: orange;
+ }
+img {
+	height: 400px;
+	width: 600px;
+	vertical-align: top;
+	display: inline-block;
+}
