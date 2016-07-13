@@ -86,7 +86,7 @@ app.post('/pokemon/:id', function(req, res) {
 			console.log('something went wrong');
     	} else { // else console.log that we did well and then redirect to the root route
     		console.log('successfully edited a pokemon!');
-    		res.redirect('/');
+    		res.redirect('/pokemon/show/'+req.params.id);
     	}
     });
 });

@@ -3,7 +3,7 @@
     <h2>Here is the Pokemon you selected:</h2>
         <h3>Name: <%= Pokemon.name %></h3>
         <h4>Species: <%= Pokemon.species %></h4>
-        <a href="/pokemon/show/<%= Pokemon._id %>" value="Show">Show this Pokemon</a>
+        <a href="/" value="Home">Go Back</a>
         <a href="/pokemon/edit/<%= Pokemon._id %>" value="Edit">Edit this Pokemon</a>
         <form action="/pokemon/destroy/<%= Pokemon._id %>" method="POST">
         <button type="submit">  >Release this Pokemon</button>
