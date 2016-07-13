@@ -1,0 +1,72 @@
+<html
+<head>
+	<title></title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type ="text/javascript">
+		$(document).ready(function (){
+// this triggers the connection event in our server!
+var socket = io.connect('http://localhost:8000');
+ $('#button').click(function(){
+    socket.emit("clicked"); 
+    return false;
+});
+ $('#reset').click(function(){
+    socket.emit("reset"); 
+    return false;
+});
+socket.on('server_response', function (data){
+	html_str = ''
+	if (data.count == 0){
+		html_str += "<h3>WHO THE FUCK RESET THE BUTTON!</h3>";
+	}
+	else if (data.count < 100){
+		html_str += "<h3>the button has only been pushed ";
+		html_str += data.count;
+		html_str += " times, how lazy, you need to work harder</h3>";
+	}
+	else if (data.count < 500){
+		html_str += "<h3>the button has been pushed ";
+		html_str += data.count;
+		html_str += " times.  Am I supposed to be impressed by that number, I don't get out of bed for less them 500</h3>";
+	}
+	else if (data.count < 1000){
+		html_str += "<h3>the button has been pushed ";
+		html_str += data.count;
+		html_str += " times.  That's passable I guess.  I still think you can do more.</h3>";
+	}
+	else if (data.count < 5000){
+		html_str += "<h3>the button has been pushed ";
+		html_str += data.count;
+		html_str += " times.  I'm starting to get a bit excited now!  keep pressing that button!</h3>";
+	}
+	else if (data.count < 10000){
+		html_str += "<h3>the button has been pushed ";
+		html_str += data.count;
+		html_str += " times.  come on, keep going, press that button, again and again and again!</h3>";
+	}
+	else if (data.count < 10001){
+		html_str += "<h3>the button has been pushed ";
+		html_str += data.count;
+		html_str += " times.  Oh baby yes!  #$#^#%%^&$#^#$@#$@#^#$%$%^#$@$##%$^&#$%@#$@$#%^$#$%^$##@$@$$%#</h3>";
+	}
+	else {
+		html_str += "<h3>the button has been pushed ";
+		html_str += data.count;
+		html_str += " times.  You seem to have broken the computer.  you should probably stop touching the button now, maybe even consider resetting</h3>";
+	}
+	console.log(html_str);
+	$("#feed").html(html_str);
+});
+// we'll write all the socket stuff after the above line!
+})
+</script>
+</head>
+<body>
+<button id='button'> Click the button! :D </button>
+<button id='reset'> Reset the count. :( </button>
+
+<div id="feed">
+</div>
+</body>
+</html>

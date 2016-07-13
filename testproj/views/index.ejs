@@ -1,0 +1,35 @@
+<html
+<head>
+	<title></title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type ="text/javascript">
+		$(document).ready(function (){
+// this triggers the connection event in our server!
+var socket = io.connect('http://localhost:8000');
+ $('form').submit(function(){
+    socket.emit("submitted", {name: $('#name').val(),location: $('#location').val(), language: $('#language').val(),comment: $('#comment').val()}); 
+    return false;
+});
+socket.on('server_response', function (data){
+	$("#feed").html('<h3>The server says: You added a user called ' + data.name + '.  He sounds like a bit of a dick, but the other students at the '+ data.location +' Dojo seem ok with him, though I think they are just mooching off of his skills with ' + data.language + '.  He always says this stupid catchphrase, it goes something like: "' + data.comment + '."  If you see him, tell him that he is kind of an idiot and he should make the damn coffee once in a while.  Last I heard he has not made coffee for a whole ' + data.number +' minutes, and I need a caffiene fix! </h3>');
+	return false;
+});
+// we'll write all the socket stuff after the above line!
+})
+</script>
+</head>
+<body>
+<form action=''>
+		Name: <input type='text' id="name" name='name'>
+		Location: <input type='text' id="location" name='location'>
+		Language: <input type='text' id='language' name='language'>
+		Comment(Optional)</br>
+		<input type='text' id='comment' name='comment'> 
+		<input type='submit' value='create user'>
+	</form>
+<div id="feed">
+</div>
+</body>
+</html>

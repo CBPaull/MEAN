@@ -1,0 +1,19 @@
+<html>
+<body>
+    <h2>Here are all the Pokemon:</h2>
+    <% for (var x in Pokemon) { %>
+        <h3>Name: <%= Pokemon[x].name %></h3>
+        <h4>Species: <%= Pokemon[x].species %></h4>
+        <a href="/pokemon/show/<%= Pokemon[x]._id %>" value="Show">Show this Pokemon</a>
+        <a href="/pokemon/edit/<%= Pokemon[x]._id %>" value="Edit">Edit this Pokemon</a>
+        <form action="/pokemon/destroy/<%= Pokemon[x]._id %>" method="POST">
+        <button type="submit">  >Release this Pokemon</button>
+        </form>
+
+
+        <hr>
+
+    <% } %>
+    <a href="/pokemon/new" value="Add a new Pokemon">Catch a Pokemon</a>
+</body>
+</html>

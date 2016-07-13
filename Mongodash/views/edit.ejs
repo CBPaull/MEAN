@@ -1,0 +1,24 @@
+<html>
+<body>
+    <h2>Lets edit that Pokemon:</h2>
+    <form action="/pokemon/<%= Pokemon._id %>", method="POST">
+        <table>
+            <tr>
+                <td>Name: <%= Pokemon.name %></td><td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Species: <%= Pokemon.species %></td><td><input type="text" name="species"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="Edit Pokemon">
+                </td>
+            </tr>
+        </table>
+        <a href="/pokemon/show/<%= Pokemon._id %>" value="Show">Show this Pokemon</a>
+        <a href="/pokemon/edit/<%= Pokemon._id %>" value="Edit">Edit this Pokemon</a>
+        <form action="/pokemon/destroy/<%= Pokemon._id %>" method="POST">
+        <button type="submit">  >Release this Pokemon</button>
+        </form>
+    </body>
+    </html>

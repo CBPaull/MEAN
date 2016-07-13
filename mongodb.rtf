@@ -1,0 +1,1320 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs38 \cf0 \CocoaLigature0 > show dbs\
+local  0.000GB\
+> use my_first_db\
+switched to db my_first_db\
+> db.createCollection("students")\
+\{ "ok" : 1 \}\
+> db.students.insert\{name:'Bob Ross', home_state:'CA', lucky_number:15, birthday: \{month: 5, day: 15, year: 1975\}\}\
+2016-07-12T13:24:37.840-0700 E QUERY    [thread1] SyntaxError: missing ; before statement @(shell):1:18\
+\
+> db.students.insert(\{name:'Bob Ross', home_state:'CA', lucky_number:15, birthday: \{month: 5, day: 15, year: 1975\}\})\
+WriteResult(\{ "nInserted" : 1 \})\
+> db.students.insert(\{name:\'92Sarah Johnson\'92, home_state:\'92WA\'92, lucky_number:19, birthday: \{month: 10, day: 10, year: 1991\}\})\
+2016-07-12T13:28:08.348-0700 E QUERY    [thread1] SyntaxError: illegal character @(shell):1:25\
+\
+> db.students.insert(\{name:\'92Sarah Johnson\'92, home_state:\'92WA\'92, lucky_number:19, birthday: \{month: 10, day: 10, year: 1991\}\})\
+2016-07-12T13:28:41.355-0700 E QUERY    [thread1] SyntaxError: illegal character @(shell):1:25\
+\
+> db.students.insert(\{name:\'92Sarah Johnson\'92, home_state:\'92WA\'92, lucky_number:19, birthday: \{month: 10, day: 10, year: 1991\}\})\
+2016-07-12T13:29:11.426-0700 E QUERY    [thread1] SyntaxError: illegal character @(shell):1:25\
+\
+> db.students.insert(\{name:'Sarah Johnson', home_state:'WA', lucky_number:19, birthday: \{month:10, day:10, year: 1991\}\})\
+WriteResult(\{ "nInserted" : 1 \})\
+> db.students.insert(\{name:'Connor Paull', home_state:'CA', lucky_number:14, birthday: \{month:9, day:14, year: 1990\}\})\
+WriteResult(\{ "nInserted" : 1 \})\
+> db.students.insert(\{name:'Jenna Carpenter', home_state:'IA', lucky_number:9, birthday: \{month:4, day:25, year: 1982\}\})\
+WriteResult(\{ "nInserted" : 1 \})\
+> db.students.insert(\{name:'Jim Beam', home_state:'WV', lucky_number:6, birthday: \{month:6, day:6, year: 1966\}\})\
+WriteResult(\{ "nInserted" : 1 \})\
+> db.students.find()\
+\{ "_id" : ObjectId("5785523902faa236aea459ba"), "name" : "Bob Ross", "home_state" : "CA", "lucky_number" : 15, "birthday" : \{ "month" : 5, "day" : 15, "year" : 1975 \} \}\
+\{ "_id" : ObjectId("5785535602faa236aea459bb"), "name" : "Sarah Johnson", "home_state" : "WA", "lucky_number" : 19, "birthday" : \{ "month" : 10, "day" : 10, "year" : 1991 \} \}\
+\{ "_id" : ObjectId("5785538202faa236aea459bc"), "name" : "Connor Paull", "home_state" : "CA", "lucky_number" : 14, "birthday" : \{ "month" : 9, "day" : 14, "year" : 1990 \} \}\
+\{ "_id" : ObjectId("578553ac02faa236aea459bd"), "name" : "Jenna Carpenter", "home_state" : "IA", "lucky_number" : 9, "birthday" : \{ "month" : 4, "day" : 25, "year" : 1982 \} \}\
+\{ "_id" : ObjectId("578553c802faa236aea459be"), "name" : "Jim Beam", "home_state" : "WV", "lucky_number" : 6, "birthday" : \{ "month" : 6, "day" : 6, "year" : 1966 \} \}\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.students.find(\{home_state: 'CA'\}).pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+> db.students.find(\{home_state: 'WA'\}).pretty()\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+> db.students.find(\{lucky_number: \{$gt:3 \}).pretty()\
+... \}\
+2016-07-12T13:37:54.079-0700 E QUERY    [thread1] SyntaxError: missing \} after property list @(shell):1:40\
+\
+> db.students.find(\{lucky_number: \{$gt:3 \}\}).pretty() \}\
+2016-07-12T13:38:10.190-0700 E QUERY    [thread1] SyntaxError: expected expression, got '\}' @(shell):1:52\
+\
+> db.students.find(\{lucky_number: \{$gt:3 \}\}).pretty() \
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.students.find(\{lucky_number: \{$lte:10 \}\}).pretty()\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.students.find(\{lucky_number: \{$lte:9, $gte:1 \}\}).pretty()\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.sudents.update(\{\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.sudents.update(\{\}, \{$addToSet: \{interests: ['coding','brunch','MongoDB']\}\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.sudents.update(\{multi:true\}, \{$addToSet: \{interests: ['coding','brunch','MongoDB']\}\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.sudents.update(\{\}, \{$addToSet: \{interests: ['coding','brunch','MongoDB']\},\{multi:true\}\})\
+2016-07-12T13:47:26.267-0700 E QUERY    [thread1] SyntaxError: invalid property id @(shell):1:77\
+\
+> db.sudents.update(\{\}, \{$addToSet: \{interests: ['coding','brunch','MongoDB']\}\},\{multi:true\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.sudents.update(\{\}, \{$addToSet: \{interests: ['coding','brunch','MongoDB']\}\},\{multi:true\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.sudents.update(\{\}, \{$addToSet: \{interests: ['coding','brunch','MongoDB']\}\}, \{multi:true\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.sudents.update(\{\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\}, \{multi:true\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.sudents.update(\{\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\}, false, true)\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.sudents.update(\{\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\}, \{multi:True\})\
+2016-07-12T13:54:19.001-0700 E QUERY    [thread1] ReferenceError: True is not defined :\
+@(shell):1:77\
+\
+> db.sudents.update(\{\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\}, \{multi:true\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.sudents.update(\{"_id":\{$exists:true\}\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\}, \{multi:true\})\
+WriteResult(\{ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.sudents.update(\{\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\}, true, true)\
+WriteResult(\{\
+	"nMatched" : 0,\
+	"nUpserted" : 1,\
+	"nModified" : 0,\
+	"_id" : ObjectId("578559c6a08bb09c98033a7f")\
+\})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.sudents.update(\{\}, \{$set: \{interests: ['coding','brunch','MongoDB']\}\}, true, true)\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.sudents.update(\{\}, \{$set: \{$push: \{interests: ['coding','brunch','MongoDB']\}\}\}, true, true)\
+WriteResult(\{\
+	"nMatched" : 0,\
+	"nUpserted" : 0,\
+	"nModified" : 0,\
+	"writeError" : \{\
+		"code" : 52,\
+		"errmsg" : "The dollar ($) prefixed field '$push' in '$push' is not valid for storage."\
+	\}\
+\})\
+> db.sudents.update(\{\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\}, true, true)\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\}\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\}\
+\}\
+> db.students.update(\{\}, \{$push: \{interests: ['coding','brunch','MongoDB']\}\}, true, true)\
+WriteResult(\{ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+> db.students.update(\{name: 'Bob Ross\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'painting']\}\}, true, true)\
+2016-07-12T14:02:20.695-0700 E QUERY    [thread1] SyntaxError: missing \} after property list @(shell):1:59\
+\
+> db.students.update(\{name: 'Bob Ross\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'painting']\}\})\
+2016-07-12T14:02:44.311-0700 E QUERY    [thread1] SyntaxError: missing \} after property list @(shell):1:59\
+\
+> db.students.update(\{name: 'Bob Ross'\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'painting']\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"painting"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		[\
+			"coding",\
+			"brunch",\
+			"MongoDB"\
+		]\
+	]\
+\}\
+> db.students.update(\{name: 'Jim Beam'\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'Drinking']\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.update(\{name: 'Jenna Carpenter'\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'Magic']\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.update(\{name: 'Sarah Johnson'\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'PURE EVIL!']\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.update(\{name: 'Connor Paull'\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'Motorcycles']\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"painting"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"PURE EVIL!"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Motorcycles"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Magic"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	]\
+\}\
+> db.students.update(\{name: 'Sarah Johnson'\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'taxes']\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.update(\{name: 'Sarah Johnson'\}, \{$set: \{interests: ['coding','brunch','MongoDB']\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785523902faa236aea459ba"),\
+	"name" : "Bob Ross",\
+	"home_state" : "CA",\
+	"lucky_number" : 15,\
+	"birthday" : \{\
+		"month" : 5,\
+		"day" : 15,\
+		"year" : 1975\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"painting"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("5785538202faa236aea459bc"),\
+	"name" : "Connor Paull",\
+	"home_state" : "CA",\
+	"lucky_number" : 14,\
+	"birthday" : \{\
+		"month" : 9,\
+		"day" : 14,\
+		"year" : 1990\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Motorcycles"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Magic"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	]\
+\}\
+> db.students.update(\{name: 'Sarah Johnson'\}, \{$set: \{interests: ['coding','brunch','MongoDB', 'PURE EVIL!']\}\})\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.remove(\{home_state: "CA"\})\
+WriteResult(\{ "nRemoved" : 2 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("5785535602faa236aea459bb"),\
+	"name" : "Sarah Johnson",\
+	"home_state" : "WA",\
+	"lucky_number" : 19,\
+	"birthday" : \{\
+		"month" : 10,\
+		"day" : 10,\
+		"year" : 1991\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"PURE EVIL!"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Magic"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	]\
+\}\
+> db.students.remove(\{name: "Sarah Johnson"\})\
+WriteResult(\{ "nRemoved" : 1 \})\
+> db.students.deleteOne(\{lucky_number: \{gt: 5\}\})\
+\{ "acknowledged" : true, "deletedCount" : 0 \}\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("578553ac02faa236aea459bd"),\
+	"name" : "Jenna Carpenter",\
+	"home_state" : "IA",\
+	"lucky_number" : 9,\
+	"birthday" : \{\
+		"month" : 4,\
+		"day" : 25,\
+		"year" : 1982\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Magic"\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	]\
+\}\
+> db.students.remove(\{lucky_number: \{gt: 5\}\}, 1)\
+WriteResult(\{ "nRemoved" : 0 \})\
+> db.students.remove(\{lucky_number: \{$gt: 5\}\}, 1)\
+WriteResult(\{ "nRemoved" : 1 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	]\
+\}\
+> db.students.update(\{\}, \{$push: \{number_of_belts: 0\}\}, true, true)\
+WriteResult(\{ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	],\
+	"number_of_belts" : [\
+		0\
+	]\
+\}\
+> db.students.update(\{home_state:"WA"\}, \{$set: \{number_of_belts: 1\}\}, true, true)\
+WriteResult(\{\
+	"nMatched" : 0,\
+	"nUpserted" : 1,\
+	"nModified" : 0,\
+	"_id" : ObjectId("57855ea8a08bb09c98033a80")\
+\})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	],\
+	"number_of_belts" : [\
+		0\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("57855ea8a08bb09c98033a80"),\
+	"home_state" : "WA",\
+	"number_of_belts" : 1\
+\}\
+> db.students.update(\{\}, \{$rename: \{'number_of_belts':'belts_earned' \}\}, true, true)\
+WriteResult(\{ "nMatched" : 2, "nUpserted" : 0, "nModified" : 2 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"lucky_number" : 6,\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	],\
+	"belts_earned" : [\
+		0\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("57855ea8a08bb09c98033a80"),\
+	"home_state" : "WA",\
+	"belts_earned" : 1\
+\}\
+> db.students.update(\{\}, \{$unset: \{'lucky_number' \}\}, true, true)\
+2016-07-12T14:22:44.421-0700 E QUERY    [thread1] SyntaxError: missing : after property id @(shell):1:48\
+\
+> db.students.update(\{\}, \{$unset: \{'lucky_number':''\}\}, true, true)\
+WriteResult(\{ "nMatched" : 2, "nUpserted" : 0, "nModified" : 1 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	],\
+	"belts_earned" : [\
+		0\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("57855ea8a08bb09c98033a80"),\
+	"home_state" : "WA",\
+	"belts_earned" : 1\
+\}\
+> db.students.update(\{\}, \{$push: \{updated_at: new Date()\}\}, true, true)\
+WriteResult(\{ "nMatched" : 2, "nUpserted" : 0, "nModified" : 2 \})\
+> db.students.find().pretty()\
+\{\
+	"_id" : ObjectId("578553c802faa236aea459be"),\
+	"name" : "Jim Beam",\
+	"home_state" : "WV",\
+	"birthday" : \{\
+		"month" : 6,\
+		"day" : 6,\
+		"year" : 1966\
+	\},\
+	"interests" : [\
+		"coding",\
+		"brunch",\
+		"MongoDB",\
+		"Drinking"\
+	],\
+	"belts_earned" : [\
+		0\
+	],\
+	"updated_at" : [\
+		ISODate("2016-07-12T21:26:48.967Z")\
+	]\
+\}\
+\{\
+	"_id" : ObjectId("57855ea8a08bb09c98033a80"),\
+	"home_state" : "WA",\
+	"belts_earned" : 1,\
+	"updated_at" : [\
+		ISODate("2016-07-12T21:26:48.967Z")\
+	]\
+\}\
+> \
+}
