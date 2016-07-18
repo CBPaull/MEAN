@@ -1,0 +1,21 @@
+<html>
+<body>
+    <h2>Here are all the quotes:</h2>
+    <% for (var x in quotes) { %>
+        <p><i><%= quotes[x].name %> said "</i> <b><%= quotes[x].quote %>"</b></p>
+         <p><%= quotes[x].likes %> People like this quote ||  Qoute made at: <%= quotes[x].createdAt %></p>
+         <form action="/quotes/like/<%= quotes[x]._id %>" method="POST">
+         <input type="hidden" name="likes" value="<%= quotes[x].likes %>">
+        <button type="submit">Like this quote</button>
+        </form>
+        <form action="/quotes/destroy/<%= quotes[x]._id %>" method="POST">
+        <button type="submit">Remove this quote</button>
+        </form>
+
+
+        <hr>
+
+    <% } %>
+    <a href="/" value="Add a new quotes">Create new quote</a>
+</body>
+</html>

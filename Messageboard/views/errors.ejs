@@ -1,0 +1,8 @@
+<h4><a href="/">
+Click here to return to the messageboard</a>
+
+<% if(typeof(errors) != 'undefined' ) { %>
+     <% for (var x in errors) { %>
+      <h3><%= errors[x].message %></h3>
+     <% } %>
+ <% } %>
